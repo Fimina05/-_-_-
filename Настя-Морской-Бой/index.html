@@ -1,0 +1,124 @@
+Sofia, [28.05.2024 17:15]
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Морской бой</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <div class="app-header">
+        <h1 class="app-title">Морской бой</h1>
+      </div>
+      <div class="app-body">
+        <div class="player" data-side="player"></div>
+        <div class="app-menu">
+          <div class="app-actions" data-scene="preparation">
+            <div class="actions-level-difficulty actions-group">
+              <div class="actions-title title-difficulty">
+                Выбор сложности
+              </div>
+              <div class="actions-buttons">
+                <div class="button-wrap">
+                  <button class="app-action" data-computer="easy" onclick="selectDifficulty('easy')">
+                    Легко
+                  </button>
+                </div>
+                <div class="button-wrap">
+                  <button class="app-action" data-computer="medium" onclick="selectDifficulty('medium')">
+                    Средне
+                  </button>
+                </div>
+                <div class="button-wrap">
+                  <button class="app-action" data-computer="hard" onclick="selectDifficulty('hard')">
+                    Трудно
+                  </button>
+                </div>
+              </div>
+              <div class="actions-buttons">
+                <div class="button-wrap">
+                  <button class="app-action" data-computer="simple" disabled>
+                    Старт
+                  </button>
+                </div>
+              </div>
+            </div>
+           
+            <div class="arrangement actions-group">
+              <div class="actions-title title-arrangement">
+                Расстановка кораблей
+              </div>
+              <div class="actions-buttons">
+                <div class="button-wrap">
+                  <button class="app-action" data-action="manually">
+                    Расставить вручную
+                  </button>
+                </div>
+                <div class="button-wrap">
+                  <button class="app-action" data-action="randomize">
+                    Случайная расстановка
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="app-actions hidden" data-scene="computer">
+            <div class="battlefield-status-killed">Вы нанесли урон: <span class="count">0</span>/20</div>
+            <div class="battlefield-status-killed-opponent">Противник нанес урон: <span class="count">0</span>/20</div>
+            <div class="battlefield-status">Ваш ход</div>
+            <!-- <div class="battlefield">
+              <label>Введите координаты в виде А-1<br>
+              <input id="hod-input" type="text" style="padding: 4px 10px;" placeholder="А-1"></label>
+              <button id="hod-btn" style="background-color: white;border: 1px solid grey;padding: 5px 20px;margin-bottom: 50px;">Ход</button>
+            </div> -->
+            <div class="button-wrap">
+              <button class="app-action" data-action="surrender">Сдаться</button>
+              <button class="app-action" data-action="again">Играть еще раз</button>
+            </div>
+          </div>
+        </div>
+        <div class="opponent" data-side="opponent"></div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="scripts/additional.js"></script>
+    <script src="scripts/Mouse.js"></script>
+
+<script src="scripts/App.js"></script>
+    <script src="scripts/Scene.js"></script>
+    <script src="scripts/scenes/PreparationScene.js"></script>
+    <script src="scripts/scenes/ComputerScene.js"></script>
+
+    <script src="scripts/Shot.js"></script>
+    <script src="scripts/ShotView.js"></script>
+
+    <script src="scripts/BattleField.js"></script>
+    <script src="scripts/BattleFieldView.js"></script>
+
+    <script src="scripts/Ship.js"></script>
+    <script src="scripts/ShipView.js"></script>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/hod.js"></script>
+    <script>
+      function selectDifficulty(difficulty) {
+        $('.app-action[data-computer]').removeAttr('disabled');
+        $('.app-action[data-computer="' + difficulty + '"]').attr('disabled', 'disabled');
+        $('#startButton').removeAttr('disabled');
+      }
+      
+      $( document ).ready(function() {
+        $('.battlefield-item__active').css('background-color', 'black');
+        console.log('Yes');
+      });
+    </script>
+  </body>
+</html>
